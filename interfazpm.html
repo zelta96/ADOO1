@@ -1,0 +1,73 @@
+<html>
+<head>
+	<meta charset="utf-8">
+		<link rel="stylesheet" href="estilospm.css">
+<script>
+	function mensaje1(ev){
+		var me = document.getElementsByTagName("p");
+  	var padre = document.getElementsByTagName("p")[0].parentNode;
+var ref=padre.lastChild;
+padre.removeChild(ref);
+var elem=document.createElement("p");
+var texto=document.createTextNode("Información del empleado.");
+elem.appendChild(texto);
+padre.appendChild(elem);
+	}
+	function mensaje2(ev){
+		var me = document.getElementsByTagName("p");
+  	var padre = document.getElementsByTagName("p")[0].parentNode;
+var ref=padre.lastChild;
+padre.removeChild(ref);
+var elem=document.createElement("p");
+var texto=document.createTextNode("Proyectos empleado.");
+elem.appendChild(texto);
+padre.appendChild(elem);
+	}
+	function mensaje3(ev){
+		var me = document.getElementsByTagName("p");
+  	var padre = document.getElementsByTagName("p")[0].parentNode;
+var ref=padre.lastChild;
+padre.removeChild(ref);
+var elem=document.createElement("p");
+var texto=document.createTextNode("Reportes empleado.");
+elem.appendChild(texto);
+padre.appendChild(elem);
+	}
+</script> 
+</head>
+<body id="cuerpo">
+	<ul class="ca-menu">
+	<li onclick="mensaje1(event)" id="opcion1">
+		<a href="#">
+			<span class="ca-icon">I</span>
+			<div class="ca-content">
+				<h2 class="ca-main">Informacion</h2>
+				<h3 class="ca-sub">Ver tu información completa</h3>
+			</div>
+		</a>
+	</li>
+	<li onclick="mensaje2(event)" id="opcion2">
+		<a href="#">
+			<span class="ca-icon">P</span>
+			<div class="ca-content">
+				<h2 class="ca-main">Ver proyectos</h2>
+				<h3 class="ca-sub">Clic aquí para ver los proyectos</h3>
+			</div>
+		</a>
+	</li>
+	<li onclick="mensaje3(event)" id="opcion3">
+		<a href="#">
+			<span class="ca-icon">R</span>
+			<div class="ca-content">
+				<h2 class="ca-main">Reportes</h2>
+				<h3 class="ca-sub">Clic aquí para generar reporte</h3>
+			</div>
+		</a>
+	</li>
+</ul>
+<section class="info">
+	<article class="in"><p></p><p>Información del empleado.</p></article>
+	</section>
+
+</body>
+</html>

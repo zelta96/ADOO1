@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+<link rel="stylesheet" href="loginestilos.css">
+	<title>Gestion Empresa de desarrollo</title>
+
+</head>
+
+<body>
+
+    <div id="login-form">
+
+        <h1>Iniciar Sesión</h1>
+
+        <fieldset>
+
+            <form action="iniciar.php" method="POST">
+
+                <input type="email" required placeholder="Correo" name="correo" onBlur="if(this.value=='')this.value='Correo'" onFocus="if(this.value=='Correo')this.value='' "> 
+                <input type="password" required placeholder="Password" name="password" onBlur="if(this.value=='')this.value='Password'" onFocus="if(this.value=='Password')this.value='' "> 
+
+               <input type="submit" value="Entrar">
+
+                <footer class="clearfix">
+
+                    <p><span class="info">?</span><a href="registro.html">¿No estás registrado?</a></p>
+
+                </footer>
+
+            </form>
+
+        </fieldset>
+
+    </div> 
+
+</body>
+</html>

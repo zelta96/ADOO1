@@ -1,0 +1,27 @@
+.movimiento_de_boton:hover{
+transform:translateY(-5px);
+box-shadow: 0 0 20px #ffff;
+}
+
+#cuerpo { 
+	background: url(fondo.png) center fixed no-repeat;
+	animation-duration: 2s;
+  animation-delay: 0s;
+  animation-name: sBote;
+}
+
+@keyframes sBote{
+  from{
+    opacity: 0;
+   
+  }
+  to{
+  opacity: 1;
+  
+  }
+}
+
+.botones{
+	text-align: center;
+	margin-top: 500px;
+}

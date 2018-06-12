@@ -1,0 +1,31 @@
+<html> 
+<head> 
+<script> 
+function mostrar(frm,num) { 
+  if(num==0) { 
+    frm.txt1.style.visibility='visible'; 
+    frm.txt2.style.visibility='hidden'; 
+  } 
+  else { 
+    frm.txt1.style.visibility='hidden'; 
+    frm.txt2.style.visibility='visible'; 
+  } 
+} 
+
+function mostrarf(objOrigen) {
+    document.getElementById("div11").style.visibility="hidden";
+} 
+</script> 
+</head> 
+<body> 
+<form > 
+	<div id="div11" style="visibility: : visible">
+<input type="radio" name="rad" checked="checked" onclick="mostrar(this.form,0)" /> 
+<input type="radio" name="rad" onclick="mostrar(this.form,1)" /> 
+<input type="text" name="txt1" /> 
+<input type="text" name="txt2" style="visibility:hidden" /> 
+</div>
+<input type="submit" name="btn1" onclick="mostrarf(this.form)" /> 
+</form> 
+</body> 
+</html>  

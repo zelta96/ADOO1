@@ -1,0 +1,86 @@
+<html>
+<head>
+  <meta charset="utf-8">
+    <link rel="stylesheet" href="registroestilos.css">
+<script>
+	class Empleado{
+		constructor(usuario,correo,password,direccion,telefono,tipoempleado,nombre,apellidos,edad,sexo){
+			this.usuario=usuario;
+			this.correo=correo;
+			this.password=password;
+			this.direccion=direccion;
+			this.telefono=telefono;
+			this.tipoempleado=tipoempleado;
+			this.nombre=nombre;
+			this.apellidos=apellidos;
+			this.edad=edad;
+			this.sexo=sexo;
+		}
+	}
+  function validar(){
+    var nombre,usuario,apellidos,correo,password,direccion,telefono,tipo,edad,sexo;
+    usuario=document.getElementById("usuario").value;
+    correo=document.getElementById("correo").value;
+    password = document.getElementById("password").value;
+    direccion = document.getElementById("direccion").value;
+    telefono = document.getElementById("telefono").value;
+    tipoempleado=document.getElementById("tipoempleado").value;
+    nombre=document.getElementById("nombre").value;
+    apellidos=document.getElementById("apellidos").value;
+    edad=document.getElementById("edad").value;
+    sexo=document.getElementById("sexo").value;
+   confirm_password = document.getElementById("confirm_password").value;
+
+  }
+ 
+  
+</script> 
+</head>
+
+<body>
+<div class="container" id="formulario">  
+  <form id="contact" onSubmit="return validar()" action="registrar.php" method="POST">
+    <h3>Regístrate</h3>
+    <h4>¿Eres un nuevo empleado?
+    <br>
+    Ingresa tus datos para registrarte al sistema
+    </h4>
+      <input placeholder="Usuario" type="text" id="usuario" name="usuario" required>
+    
+      <input placeholder="Correo electrónico" id="correo" name="correo" type="email" required>
+   
+      <input placeholder="Contraseña" id="password" name="password" type="password" required>
+
+    <input type="password" placeholder="Confirma tu contraseña" name="password2" id="confirm_password" required>
+
+      <input placeholder="Dirección" id="direccion" name="direccion" type="text" onclick="validar()" required>
+ 
+      <input placeholder="Ingresa tu número de teléfono" id="telefono" name="telefono" type="tel" required>
+
+      <p>Tipo de empleado:</p>
+      <input type="radio" id="dev"
+           name="tipoempleado" value="1">
+    <label for="dev">Developer</label>
+    <input type="radio" id="pm"
+           name="tipoempleado" value="2">
+    <label for="pm">Project Manager</label>
+
+      <input placeholder="Nombre" id="nombre" name="nombre" type="text" required>
+  
+      <input placeholder="Apellidos" id="apellidos" name="apellidos" type="text" required>
+   
+      <input placeholder="Edad" id="edad" name="edad" type="text" required>
+
+      <p>Sexo:</p>
+      <input type="radio" id="mascul"
+           name="sexo" value="male">
+    <label for="mascul">Hombre</label>
+    <input type="radio" id="feme"
+           name="sexo" value="female">
+    <label for="feme">Mujer</label>
+ 
+      <button type="submit"  id="contact-submit">Registrarse</button>
+  </form>
+</div>  
+</body>
+</html>
