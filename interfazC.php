@@ -11,29 +11,25 @@ if($var_session==null||$var_session=''){
 <head>
 	<meta charset="utf-8">
 		<link rel="stylesheet" href="estilosdev.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-	function modificar(){
-		//document.getElementById('prueba').innerHTML='<form id="contact" onSubmit="return validar()" action="registrar.php" method="POST"><h3>MODIFICA TUS DATOS</h3><input placeholder="Usuario" type="text" id="usuario" name="usuario" required><input placeholder="Correo electrónico" id="correo" name="correo" type="email" required><input placeholder="Contraseña" id="password" name="password" type="password" required><input type="password" placeholder="Confirma tu contraseña" name="password2" id="confirm_password" required><input placeholder="Dirección" id="direccion" name="direccion" type="text" onclick="validar()" required><input placeholder="Ingresa tu número de teléfono" id="telefono" name="telefono" type="tel" required><a>Tipo de empleado:</a><input type="radio" id="dev" name="tipoempleado" value="1"><label for="dev">Developer</label><input type="radio" id="pm" name="tipoempleado" value="2"> <label for="pm">Project Manager</label> <input placeholder="Nombre" id="nombre" name="nombre" type="text" required> <input placeholder="Apellidos" id="apellidos" name="apellidos" type="text" required> <input placeholder="Edad" id="edad" name="edad" type="text" required> <a>Sexo:</a> <input type="radio" id="mascul" name="sexo" value="male"> <label for="mascul">Hombre</label><input type="radio" id="feme"name="sexo" value="female"><label for="feme">Mujer</label><button type="submit"  id="contact-submit">Modificar</button></form>';
-	}
+	
 	function mensaje(ev,num){
 		if(num == 0){
-		 document.getElementById("form1").style.visibility="visible";
-		 document.getElementById("form2").style.visibility="hidden";
+		 document.getElementById("form1").style.display="block";
+		 document.getElementById("form2").style.display="none";
 		}
 		else{
-		 document.getElementById("form1").style.visibility="hidden";
-		 document.getElementById("form2").style.visibility="visible";
-
+		 document.getElementById("form1").style.display="none";
+		 document.getElementById("form2").style.display="block";
 		}
-		 
-
-	}
+	};
 
 	function mensaje3(ev){
 		document.getElementById('prueba').innerHTML='';
 		document.getElementById('prueba').innerHTML='<p>Reportes.</p>';
 	}
-		}
+		
 </script> 
 </head>
 <body id="cuerpo">
@@ -67,44 +63,71 @@ if($var_session==null||$var_session=''){
 	</li>
 </ul>
 <section class="info">
-	<form id=form1  style="visibility: hidden;"  action="registroproyecto.php" method="POST">
+	<form id=form1  style="display: none;"  action="registroproyecto.php" method="POST">
 		<div class="container" id="formulario">
-      <input placeholder="Nombre del proyecto" type="text" id="usuario" name="usuario" required>
+      <input placeholder="Nombre del proyecto" type="text" id="usuario" name="usuario" required><br><br>
     
-      <input placeholder="Descipcion" id="des" name="des" type="text" required>
+      <input placeholder="Descipcion" id="des" name="des" type="text" required><br><br>
    
-      <input placeholder="Empresa" id="emp" name="emp" type="text" required>
+      <input placeholder="Empresa" id="emp" name="emp" type="text" required><br><br>
 
 
       <button type="submit"  id="contact-submit">Registrar Proyecto</button>
 		</div> 
 	</form> 
-</section>
-<section class="info">
-	<form id=form2  style="visibility: visible;"  action="registroproyecto.php" method="POST">
+	<form id=form2  style="display:none;"  action="registroproyecto.php" method="POST">
 		<div class="container" id="formulario2">
       <div>
         <?php
           include 'cone.php';
+          $vl=$_SESSION['usuario'];
           $mysqi=conectar();
-          $rec=$mysqi->query("SELECT * FROM cliente where Nombre='$var_session'");
-          while ($f1=mysqli_fetch_array($rec)) {
-							$id=$f1['id'];
+
+		//encontrar a cliente por el id para tabla intermedia
+		$rec=$mysqi->query("SELECT * FROM cliente where RFC='$vl'");
+		while ($f=mysqli_fetch_array($rec)) {
+							$id=$f['id'];
+							$nombre=$f['Nombre'];
+						
+		?>
+		<div class="Proyectoscliente">
+        <center>
+          <span><a>RFC:</a> <?php echo $f['Nombre'];?></span><br>
+        </center>
+      </div>
+		<?php
+		  }				
+          $ref=$mysqi->query("SELECT * FROM cliente_proyecto where id_cliente='$id'");
+			while ($f=mysqli_fetch_array($ref)) {
+							$id_cliente=$f['id_cliente'];
+							$id_proyecto=$f['id_proyecto'];
+
+							$rep=$mysqi->query("SELECT * FROM proyecto where Id='$id_proyecto'");
+							while ($f1=mysqli_fetch_array($rep)) {
+		?>
+
+		<div class="Proyectoscliente">
+        <center>
+          <span><a>Clave Registro:</a> <?php echo $f['id_proyecto'];?></span><br>
+          <span><a>Nombre Proyecto Registro:</a> <?php echo $f1['Nombre'];?></span><br>
+          <span><a>Descipcion:</a> <?php echo $f1['Descripcion'];?></span><br>
+          <span><a>Empresa:</a> <?php echo $f1['Empresa'];?></span><br>
+        </center>
+      </div>
+      	<br><br><br>
+		<?php					
 						}
-          $ref=$mysqi->query("SELECT * FROM cliente_proyecto where id_usuario='$id'");
-          //$re=$mysqi->query("SELECT * FROM proyecto where id='$ref'");
-          while ($f=mysqli_fetch_array($ref)) {
+					}
         ?>
+        
 
 
       <div class="producto">
         <center>
-          <span><?php echo $f['id_proyecto'];?></span><br>
+          <span><?php echo $f['id'];?></span><br>
         </center>
       </div>
-      <?php
-      }
-      ?>
+
       </div>
 		</div> 
 	</form> 
