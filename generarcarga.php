@@ -8,7 +8,7 @@ echo "$proyecto";
 //$consulta="SELECT id FROM cliente where Nombre ='$vl'";
 $mysqi=conectar();
 //encontrar a cliente por el id para tabla intermedia
-$rep=$mysqi->query("SELECT * FROM developers where usuario='$emp'");
+$rep=$mysqi->query("SELECT * FROM empleados where usuario='$emp'");
 
 if(!$rep){
 	echo 'NO HAY REGISTROS DE DEV';
@@ -23,16 +23,16 @@ while ($f1=mysqli_fetch_array($rep)) {
 echo "$ide";
 //$resultado1=mysqli_query($conexion,$consulta);
 $conexion=mysqli_connect('localhost','root','','gestion');
-$insertar="INSERT INTO emp_proy (id_empl,id_proy) VALUES ('$ide','$proyecto')";
+//$insertar="INSERT INTO emp_proy (id_empl,id_proy) VALUES ('$proyecto','$proyecto')";
 
-$resultado=mysqli_query($conexion,$insertar);
+$resultado=$mysqi->query("INSERT INTO emp_proy(id_empl,id_proy) VALUES ('$ide','$proyecto')");
 
 if(!$resultado){
 	echo 'NO SE PUDO REGISTRAR';
 }
 else{
 	echo 'REGISTRO EXITOSO';
-	header("location:interfazdev.php");
+	header("location:interfazpm.php");
 }
 
 
