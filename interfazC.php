@@ -12,7 +12,7 @@ if($var_session==null||$var_session=''){
 	<meta charset="utf-8">
 		<link rel="stylesheet" href="estilosdev.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
+	<script>
 	
 	function mensaje(ev,num){
 		if(num == 0){
@@ -30,7 +30,7 @@ if($var_session==null||$var_session=''){
 		document.getElementById('prueba').innerHTML='<p>Reportes.</p>';
 	}
 		
-</script> 
+	</script> 
 </head>
 <body id="cuerpo">
 	<ul class="ca-menu">
@@ -61,7 +61,7 @@ if($var_session==null||$var_session=''){
 			</div>
 		</a>
 	</li>
-</ul>
+	</ul>
 <section class="info">
 	<form id=form1  style="display: none;"  action="registroproyecto.php" method="POST">
 		<div class="container" id="formulario">
