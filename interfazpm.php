@@ -95,7 +95,7 @@ session_start();
       <button type="submit"  id="contact-submit">Registrar Proyecto</button>
 		</div> 
 	</form> 
-	<form id=form2  style="display: none;" >
+	<form id=form2  style="display: none;" action="generarcarga.php" method="POST">
 		<div id="global">
 				 <?php
           			include 'cone.php';
@@ -109,6 +109,7 @@ session_start();
 							
 				?>
 				<center>
+					<span><a>ID Proyecto:</a> <?php echo $f1['Id'];?></span><br>
           			<span><a>Nombre Proyecto Registro:</a> <?php echo $f1['Nombre'];?></span><br>
           			<span><a>Descipcion:</a> <?php echo $f1['Descripcion'];?></span><br>
           			<span><a>Empresa:</a> <?php echo $f1['Empresa'];?></span><br>
@@ -143,7 +144,7 @@ session_start();
 			</div>			
 		</div>
 		<div class="container" id="formulario">
-    			<input placeholder="Nombre del proyecto" type="text" id="usuario" name="usuario" required><br><br>   
+    			<input placeholder="Codigo del proyecto" type="text" id="proyecto" name="proyecto" required><br><br>   
       			<input placeholder="Usuario empleado" id="emp" name="emp" type="text" required><br><br>   
       			<button type="submit"  id="contact-submit">Confirmar Cargas</button>
 			</div> 
