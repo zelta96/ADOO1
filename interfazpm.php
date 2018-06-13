@@ -85,14 +85,34 @@ session_start();
 <section class="info" >
 	<form id=form1  style="display: none;"  action="registroproyecto.php" method="POST">
 		<div class="container" id="formulario">
+			
+			<?php
+          			include 'cone.php';
+          			$vl=$_SESSION['usuario'];
+          			$mysqi=conectar();
+
+					//encontrar a cliente por el id para tabla intermedia
+					$rec=$mysqi->query("SELECT * FROM proyecto");
+					while ($f1=mysqli_fetch_array($rec)) {
+
+							
+				?>
+				<center>
+					<span><a>ID Proyecto:</a> <?php echo $f1['Id'];?></span><br>
+          			<span><a>Nombre Proyecto Registro:</a> <?php echo $f1['Nombre'];?></span><br>
+          			<span><a>Descipcion:</a> <?php echo $f1['Descripcion'];?></span><br>
+          			<span><a>Empresa:</a> <?php echo $f1['Empresa'];?></span><br>
+        		</center>
+        		<br><br><br>
+				<?php
+					}
+				?>
 
 		</div> 
 	</form> 
 	<form id=form2  style="display: none;" action="generarcarga.php" method="POST">
 		<div id="global">
 				 <?php
-          			include 'cone.php';
-          			$vl=$_SESSION['usuario'];
           			$mysqi=conectar();
 
 					//encontrar a cliente por el id para tabla intermedia
@@ -117,7 +137,6 @@ session_start();
 		<div id="global">
 			<div>
 				 <?php
-				 	$mysqi=conectar();
 					//encontrar a cliente por el id para tabla intermedia
 					$rec=$mysqi->query("SELECT * FROM empleados where tipo=1");
 					while ($f1=mysqli_fetch_array($rec)) {
