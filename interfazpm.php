@@ -58,7 +58,7 @@ session_start();
 		<a href="#">
 			<span class="ca-icon">P</span>
 			<div class="ca-content">
-				<h2 class="ca-main">Ver proyectos</h2>
+				<h2 class="ca-main">Generar Carga Proyectos</h2>
 				<h3 class="ca-sub">Clic aquí para ver los proyectos</h3>
 			</div>
 		</a>
@@ -85,14 +85,7 @@ session_start();
 <section class="info" >
 	<form id=form1  style="display: none;"  action="registroproyecto.php" method="POST">
 		<div class="container" id="formulario">
-      <input placeholder="Nombre del proyecto" type="text" id="usuario" name="usuario" required><br><br>
-    
-      <input placeholder="Descipcion" id="des" name="des" type="text" required><br><br>
-   
-      <input placeholder="Empresa" id="emp" name="emp" type="text" required><br><br>
 
-
-      <button type="submit"  id="contact-submit">Registrar Proyecto</button>
 		</div> 
 	</form> 
 	<form id=form2  style="display: none;" action="generarcarga.php" method="POST">
