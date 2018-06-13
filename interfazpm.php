@@ -34,7 +34,7 @@ session_start();
 		 document.getElementById("form1").style.display="none";
 		 document.getElementById("form2").style.display="block";
 		}
-	};
+	}
 
 	function mensaje3(ev){
 		document.getElementById('prueba').innerHTML='';
@@ -46,7 +46,7 @@ session_start();
 <body id="cuerpo">
 	<ul class="ca-menu">
 	<li onclick="mensaje(event,0)" id="opcion1">
-		<a href="crearform.php">
+		<a href="#">
 			<span class="ca-icon">I</span>
 			<div class="ca-content">
 				<h2 class="ca-main">Informacion</h2>
@@ -54,7 +54,7 @@ session_start();
 			</div>
 		</a>
 	</li>
-	<li onclick="mensaje2(event,1)" id="opcion2">
+	<li onclick="mensaje(event,1)" id="opcion2">
 		<a href="#">
 			<span class="ca-icon">P</span>
 			<div class="ca-content">
@@ -63,7 +63,7 @@ session_start();
 			</div>
 		</a>
 	</li>
-	<li onclick="mensaje3(event,2)" id="opcion3">
+	<li onclick="mensaje(event,2)" id="opcion3">
 		<a href="#">
 			<span class="ca-icon">R</span>
 			<div class="ca-content">
@@ -83,10 +83,20 @@ session_start();
 	</li>
 </ul>
 <section class="info" >
+	<form id=form1  style="display: none;"  action="registroproyecto.php" method="POST">
+		<div class="container" id="formulario">
+      <input placeholder="Nombre del proyecto" type="text" id="usuario" name="usuario" required><br><br>
+    
+      <input placeholder="Descipcion" id="des" name="des" type="text" required><br><br>
+   
+      <input placeholder="Empresa" id="emp" name="emp" type="text" required><br><br>
 
-	<form id=form2  style="display: block;"  action="registroproyecto.php" method="POST">
+
+      <button type="submit"  id="contact-submit">Registrar Proyecto</button>
+		</div> 
+	</form> 
+	<form id=form2  style="display: none;" >
 		<div id="global">
-			<div>
 				 <?php
           			include 'cone.php';
           			$vl=$_SESSION['usuario'];
@@ -107,8 +117,7 @@ session_start();
 				<?php
 					}
 				?>
-
-			</div>			
+			
 		</div>
 
 		<div id="global">
@@ -135,8 +144,7 @@ session_start();
 		</div>
 		<div class="container" id="formulario">
     			<input placeholder="Nombre del proyecto" type="text" id="usuario" name="usuario" required><br><br>   
-      			<input placeholder="Descipcion" id="des" name="des" type="text" required><br><br>   
-      			<input placeholder="Empresa" id="emp" name="emp" type="text" required><br><br>
+      			<input placeholder="Usuario empleado" id="emp" name="emp" type="text" required><br><br>   
       			<button type="submit"  id="contact-submit">Confirmar Cargas</button>
 			</div> 
 	</form> 

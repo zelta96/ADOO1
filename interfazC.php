@@ -77,8 +77,8 @@ if($var_session==null||$var_session=''){
 	</form> 
 	<form id=form2  style="display:none;"  action="registroproyecto.php" method="POST">
 		<div class="container" id="formulario2">
-      <div>
-        <?php
+      	<div>
+       	 <?php
           include 'cone.php';
           $vl=$_SESSION['usuario'];
           $mysqi=conectar();
