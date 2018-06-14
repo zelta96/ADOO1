@@ -44,6 +44,93 @@ session_start();
 	</script> 
 </head>
 <body id="cuerpo">
+	<?php
+
+		$conexion = new mysqli('localhost','jluishx1_root','root');
+
+		if($conexion == false)
+		{
+			die('Connection fail :'.$conexion->connect_error);
+		}
+		mostrar ="";
+
+		$conexion->select_db('jluishx1_moviles');
+
+		if(isset($_POST['Registrar']))
+		{
+			$Nombre = $_POST['Nombre'];
+			$Apellidos = $_POST['Apellidos'];
+			$Telefono = $_POST['Telefono'];
+			$Correo = $_POST['Correo'];
+			/*IMAGEN*/
+
+			$namefile=$_FILES['image']['name'];
+			$cd=$_FILES['image']['tmp_name'];
+			$ruta = 'imagenes/' . $_FILES['image']['name'];
+			$destino='imagenes/'.$namefile;
+			$resultado = move_uploaded_file($_FILES['image']['tmp_name'],$ruta);
+
+		if($Nombre == "" || $Apellidos == "" || $Telefono == "" || $Correo == "" || $resultado==""){
+	
+			echo "<script lenguage = 'javascript' type='text/javascript'>";
+			echo "alert('Uno o mas campos estan vacios');";
+			echo "</script> ";
+		}
+		else
+		{
+
+	 	if($Nombre == "")
+		{
+			echo "<script lenguage = 'javascript' type='text/javascript'>";
+			echo "alert('Ingrese su nombre');";
+			echo "</script> ";
+		}
+		else if($Apellidos == "")
+		{
+			echo "<script lenguage = 'javascript' type='text/javascript'>";
+			echo "alert('Ingrese sus apellidos');";
+			echo "</script> ";
+		}
+		else if($Telefono == "")
+		{
+			echo "<script lenguage = 'javascript' type='text/javascript'>";
+			echo "alert('Ingrese su numero telefonico');";
+			echo "</script> ";
+		}
+		else if($Correo == "")
+		{
+			echo "<script lenguage = 'javascript' type='text/javascript'>";
+			echo "alert('Ingrese su correo');";
+			echo "</script> ";
+		}
+		else if (empty($resultado)){
+	    	echo "<script lenguage = 'javascript' type='text/javascript'>";
+			echo "alert('Error al subir el archivo');";
+			echo "</script> ";
+		 }
+
+		else
+		{	
+			$conexion->query("INSERT INTO usuario (Nombre,Apellidos,Telefono,Correo,Foto,Ubicacion_foto) values ('$Nombre','Apellidos','$Telefono','$Correo','$namefile','$destino')");
+			echo "<script lenguage = 'javascript' type='text/javascript'>";
+			echo "alert('Registro Exitoso');";
+			echo "</script> ";
+
+			$Nombre = "";
+			$Apellidos = "";
+			$Telefono = "";
+			$Correo = "";
+   			echo "<script lenguage = 'javascript' type='text/javascript'>";
+			echo  "window.location = 'registro.php';";
+			echo "</script> ";
+	
+		}
+
+}
+
+	}
+
+?>
 	<ul class="ca-menu">
 	<li onclick="mensaje(event,0)" id="opcion1">
 		<a href="#">
@@ -83,7 +170,7 @@ session_start();
 	</li>
 </ul>
 <section class="info" >
-	<form id=form1  style="display: none;"  action="consulta.php" method="POST">
+	<form id=form1  style="display: none;"  action="registroproyecto.php" method="POST">
 		<div class="container" id="formulario">
 			<label>Nombre</label><br>
 			<input class="boxes" type="text" name="Nombre" /> <br>
@@ -94,7 +181,7 @@ session_start();
 			<label>Correo</label><br>
 			<input class="boxes" type="text" name="Correo"> <br>
 			<input class="botones" name="Registrar" value="Registrar" type="submit" />
-		</div>
+		</div> 
 	</form> 
 	<form id=form2  style="display: none;" action="generarcarga.php" method="POST">
 		<div id="global">
