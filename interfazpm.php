@@ -84,21 +84,16 @@ session_start();
 </ul>
 <section class="info" >
 	<form id=form1  style="display: none;"  action="consulta.php" method="POST">
-		<div class="container" id="formulario">
-			<label>Nombre</label><br>
-			<input class="boxes" type="text" name="Nombre" /> <br>
-			<label>Apellidos</label><br>
-			<input class="boxes" type="text" name="Apellidos"> <br>
-			<label>Telefono</label><br>
-			<input class="boxes" type="text" name="Telefono"> <br>
-			<label>Correo</label><br>
-			<input class="boxes" type="text" name="Correo"> <br>
-			<input class="botones" name="Registrar" value="Registrar" type="submit" />
-		</div>
+			<div class="container" id="formulario">
+    			<input placeholder="Codigo del proyecto" type="text" id="proyecto" name="proyecto" ><br><br>   
+      			<input placeholder="Usuario empleado" id="emp" name="emp" type="text" ><br><br>   
+      			<button type="submit"  id="contact-submit">Consultar</button>
+			</div> 
 	</form> 
 	<form id=form2  style="display: none;" action="generarcarga.php" method="POST">
 		<div id="global">
 				 <?php
+				    include 'cone.php'; 
           			$mysqi=conectar();
 
 					//encontrar a cliente por el id para tabla intermedia

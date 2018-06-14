@@ -44,93 +44,6 @@ session_start();
 	</script> 
 </head>
 <body id="cuerpo">
-	<?php
-
-		$conexion = new mysqli('localhost','jluishx1_root','root');
-
-		if($conexion == false)
-		{
-			die('Connection fail :'.$conexion->connect_error);
-		}
-		mostrar ="";
-
-		$conexion->select_db('jluishx1_moviles');
-
-		if(isset($_POST['Registrar']))
-		{
-			$Nombre = $_POST['Nombre'];
-			$Apellidos = $_POST['Apellidos'];
-			$Telefono = $_POST['Telefono'];
-			$Correo = $_POST['Correo'];
-			/*IMAGEN*/
-
-			$namefile=$_FILES['image']['name'];
-			$cd=$_FILES['image']['tmp_name'];
-			$ruta = 'imagenes/' . $_FILES['image']['name'];
-			$destino='imagenes/'.$namefile;
-			$resultado = move_uploaded_file($_FILES['image']['tmp_name'],$ruta);
-
-		if($Nombre == "" || $Apellidos == "" || $Telefono == "" || $Correo == "" || $resultado==""){
-	
-			echo "<script lenguage = 'javascript' type='text/javascript'>";
-			echo "alert('Uno o mas campos estan vacios');";
-			echo "</script> ";
-		}
-		else
-		{
-
-	 	if($Nombre == "")
-		{
-			echo "<script lenguage = 'javascript' type='text/javascript'>";
-			echo "alert('Ingrese su nombre');";
-			echo "</script> ";
-		}
-		else if($Apellidos == "")
-		{
-			echo "<script lenguage = 'javascript' type='text/javascript'>";
-			echo "alert('Ingrese sus apellidos');";
-			echo "</script> ";
-		}
-		else if($Telefono == "")
-		{
-			echo "<script lenguage = 'javascript' type='text/javascript'>";
-			echo "alert('Ingrese su numero telefonico');";
-			echo "</script> ";
-		}
-		else if($Correo == "")
-		{
-			echo "<script lenguage = 'javascript' type='text/javascript'>";
-			echo "alert('Ingrese su correo');";
-			echo "</script> ";
-		}
-		else if (empty($resultado)){
-	    	echo "<script lenguage = 'javascript' type='text/javascript'>";
-			echo "alert('Error al subir el archivo');";
-			echo "</script> ";
-		 }
-
-		else
-		{	
-			$conexion->query("INSERT INTO usuario (Nombre,Apellidos,Telefono,Correo,Foto,Ubicacion_foto) values ('$Nombre','Apellidos','$Telefono','$Correo','$namefile','$destino')");
-			echo "<script lenguage = 'javascript' type='text/javascript'>";
-			echo "alert('Registro Exitoso');";
-			echo "</script> ";
-
-			$Nombre = "";
-			$Apellidos = "";
-			$Telefono = "";
-			$Correo = "";
-   			echo "<script lenguage = 'javascript' type='text/javascript'>";
-			echo  "window.location = 'registro.php';";
-			echo "</script> ";
-	
-		}
-
-}
-
-	}
-
-?>
 	<ul class="ca-menu">
 	<li onclick="mensaje(event,0)" id="opcion1">
 		<a href="#">
@@ -170,18 +83,57 @@ session_start();
 	</li>
 </ul>
 <section class="info" >
-	<form id=form1  style="display: none;"  action="registroproyecto.php" method="POST">
-		<div class="container" id="formulario">
-			<label>Nombre</label><br>
-			<input class="boxes" type="text" name="Nombre" /> <br>
-			<label>Apellidos</label><br>
-			<input class="boxes" type="text" name="Apellidos"> <br>
-			<label>Telefono</label><br>
-			<input class="boxes" type="text" name="Telefono"> <br>
-			<label>Correo</label><br>
-			<input class="boxes" type="text" name="Correo"> <br>
-			<input class="botones" name="Registrar" value="Registrar" type="submit" />
-		</div> 
+	<form id=form1  style="display: none;"  action="consulta.php" method="POST">
+			<div class="container" id="formulario">
+				 <?php
+				    include 'cone.php'; 
+				    $proyecto=$_POST['proyecto'];
+				    $emp=$_POST['emp'];
+          			$mysqi=conectar();
+          			if($proyecto==NUll){
+          				if($emp==NULL){
+          		?>
+		          			<span><a>NOH HAY CONSULTA ALGUNA</a></span><br>
+          		<?php			
+          				}
+          				else{
+          					$rec=$mysqi->query("SELECT * FROM emp_proy where id_empl='$emp'");
+          					while ($f1=mysqli_fetch_array($rec)) {
+							$ide=$f1['id_proy'];
+							}
+							$rep=$mysqi->query("SELECT * FROM proyecto where Id='$ide'");
+          					while ($f1=mysqli_fetch_array($rep)) {
+          		?>
+          						<center>
+								<span><a>ID Proyecto:</a> <?php echo $f1['Id'];?></span><br>
+          						<span><a>Nombre Proyecto Registro:</a> <?php echo $f1['Nombre'];?></span><br>
+          						<span><a>Descipcion:</a> <?php echo $f1['Descripcion'];?></span><br>
+          						<span><a>Empresa:</a> <?php echo $f1['Empresa'];?></span><br>
+        						</center>
+        						<br><br><br>				
+          		<?php				
+          				}
+          				}
+          			}
+          			else{
+          				$rec=$mysqi->query("SELECT * FROM emp_proy where id_proy='$proyecto'");
+          					while ($f1=mysqli_fetch_array($rec)) {
+							$ide=$f1['id_empl'];
+							}
+							$rep=$mysqi->query("SELECT * FROM empleados where id='$ide'");
+          					while ($f1=mysqli_fetch_array($rep)) {
+          		?>
+          						<center>
+          						<span><a>Nombre Empleado:</a> <?php echo $f1['nombre'];?></span><br>
+          						<span><a>Apellido Empleado:</a> <?php echo $f1['apellidos'];?></span><br>
+          						<span><a>Usuario:</a> <?php echo $f1['usuario'];?></span><br>
+        						</center>
+        						<br><br><br>	
+          		<?php		
+          			}
+          			}												
+				?>
+			</div> 
 	</form> 
 	<form id=form2  style="display: none;" action="generarcarga.php" method="POST">
 		<div id="global">
