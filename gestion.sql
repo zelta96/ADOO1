@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 11-06-2018 a las 16:39:51
+-- Tiempo de generación: 14-06-2018 a las 02:53:13
 -- Versión del servidor: 5.7.19
 -- Versión de PHP: 7.1.14
 
@@ -51,11 +51,19 @@ INSERT INTO `cliente` (`id`, `Nombre`, `RFC`, `Password`) VALUES
 --
 
 CREATE TABLE `cliente_proyecto` (
-  `id` int(11) NOT NULL,
   `id_proyecto` int(11) NOT NULL,
-  `id_cliente` int(11) NOT NULL,
-  `creacion` date NOT NULL
+  `id_cliente` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `cliente_proyecto`
+--
+
+INSERT INTO `cliente_proyecto` (`id_proyecto`, `id_cliente`) VALUES
+(4, 4),
+(33, 4),
+(34, 4),
+(35, 4);
 
 -- --------------------------------------------------------
 
@@ -123,10 +131,16 @@ INSERT INTO `empleados` (`id`, `usuario`, `correo`, `password`, `direccion`, `te
 
 CREATE TABLE `emp_proy` (
   `id_empl` int(11) NOT NULL,
-  `Id_rel` int(11) NOT NULL,
-  `id_proy` int(11) NOT NULL,
-  `creacion` date NOT NULL
+  `id_proy` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `emp_proy`
+--
+
+INSERT INTO `emp_proy` (`id_empl`, `id_proy`) VALUES
+(20, 3),
+(21, 6);
 
 -- --------------------------------------------------------
 
@@ -159,6 +173,47 @@ CREATE TABLE `proyecto` (
   `Descripcion` varchar(200) NOT NULL,
   `Empresa` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `proyecto`
+--
+
+INSERT INTO `proyecto` (`Id`, `Nombre`, `Descripcion`, `Empresa`) VALUES
+(1, 'aaa', 'aaa', 'aa'),
+(2, '', '', ''),
+(3, 'tt', 'tt', 'tt'),
+(4, 'pp', 'pp', 'pp'),
+(5, 'pp', 'pp', 'pp'),
+(6, 'yy', 'yy', 'yy'),
+(7, 'zz', 'zz', 'zz'),
+(8, '11', '11', '11'),
+(9, 'jj', 'jj', 'jj'),
+(10, 'gg', 'gg', 'gg'),
+(11, 'jj', 'jj', 'jj'),
+(12, 'zz', 'zz', 'zz'),
+(13, 'zz', 'zz', 'zz'),
+(14, 'zz', 'zz', 'zz'),
+(15, 'zz', 'zz', 'zz'),
+(16, 'zz1', 'zz1', 'zz1'),
+(17, 'zz1', 'zz1', 'zz1'),
+(18, 'zz1', 'zz1', 'zz1'),
+(19, 'zz1', 'zz1', 'zz1'),
+(20, 'zz1', 'zz1', 'zz1'),
+(21, 'zz1', 'zz1', 'zz1'),
+(22, 'zz1', 'zz1', 'zz1'),
+(23, 'zz1', 'zz1', 'zz1'),
+(24, 'zz1', 'zz1', 'zz1'),
+(25, 'zz1', 'zz1', 'zz1'),
+(26, 'zz1', 'zz1', 'zz1'),
+(27, 'zz1', 'zz1', 'zz1'),
+(28, 'zz1', 'zz1', 'zz1'),
+(29, 'zz1', 'zz1', 'zz1'),
+(30, 'ww', 'ww', 'ww'),
+(31, 'ww', 'ww', 'ww'),
+(32, 'ww', 'ww', 'ww'),
+(33, 'ww', 'ww', 'ww'),
+(34, 'ggg', 'fggg', 'ggg'),
+(35, 'tokyo', 'salva pantallas', 'tokyo');
 
 -- --------------------------------------------------------
 
@@ -193,7 +248,6 @@ ALTER TABLE `cliente`
 -- Indices de la tabla `cliente_proyecto`
 --
 ALTER TABLE `cliente_proyecto`
-  ADD PRIMARY KEY (`id`),
   ADD KEY `id_proyecto` (`id_proyecto`),
   ADD KEY `id_cliente` (`id_cliente`);
 
@@ -215,7 +269,6 @@ ALTER TABLE `empleados`
 -- Indices de la tabla `emp_proy`
 --
 ALTER TABLE `emp_proy`
-  ADD PRIMARY KEY (`Id_rel`),
   ADD KEY `id_empl` (`id_empl`),
   ADD KEY `id_proy` (`id_proy`);
 
@@ -243,12 +296,6 @@ ALTER TABLE `cliente`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de la tabla `cliente_proyecto`
---
-ALTER TABLE `cliente_proyecto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `developers`
 --
 ALTER TABLE `developers`
@@ -261,12 +308,6 @@ ALTER TABLE `empleados`
   MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT de la tabla `emp_proy`
---
-ALTER TABLE `emp_proy`
-  MODIFY `Id_rel` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `pm`
 --
 ALTER TABLE `pm`
@@ -276,7 +317,7 @@ ALTER TABLE `pm`
 -- AUTO_INCREMENT de la tabla `proyecto`
 --
 ALTER TABLE `proyecto`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- Restricciones para tablas volcadas
