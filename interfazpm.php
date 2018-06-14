@@ -1,6 +1,10 @@
 <?php
 session_start();
-
+$var_session=$_SESSION['usuario'];
+if($var_session==null||$var_session=''){
+	echo "ACCESO DENEGADO";
+	die();
+}
 ?>
 
 <html>
@@ -8,9 +12,10 @@ session_start();
 #global {
 	height: 300px;
 	width: 300px;
-	border: 1px solid #ddd;
+	border: 2px solid #ddd;
 	background: #f1f1f1;
 	overflow-y: scroll;
+	border-color: blue;
 }
 #mensajes {
 	height: auto;
@@ -83,17 +88,36 @@ session_start();
 	</li>
 </ul>
 <section class="info" >
-	<form id=form1  style="display: none;"  action="consulta.php" method="POST">
-			<div class="container" id="formulario">
-    			<input placeholder="Codigo del proyecto" type="text" id="proyecto" name="proyecto" ><br><br>   
-      			<input placeholder="Usuario empleado" id="emp" name="emp" type="text" ><br><br>   
-      			<button type="submit"  id="contact-submit">Consultar</button>
-			</div> 
+	<form id=form1  style="display: none;"  action="registroproyecto.php" method="POST">
+		<div class="container" id="formulario">
+			
+			<?php
+          			include 'cone.php';
+          			$vl=$_SESSION['usuario'];
+          			$mysqi=conectar();
+
+					//encontrar a cliente por el id para tabla intermedia
+					$rec=$mysqi->query("SELECT * FROM proyecto");
+					while ($f1=mysqli_fetch_array($rec)) {
+
+							
+				?>
+				<center>
+					<span><a>ID Proyecto:</a> <?php echo $f1['Id'];?></span><br>
+          			<span><a>Nombre Proyecto Registro:</a> <?php echo $f1['Nombre'];?></span><br>
+          			<span><a>Descipcion:</a> <?php echo $f1['Descripcion'];?></span><br>
+          			<span><a>Empresa:</a> <?php echo $f1['Empresa'];?></span><br>
+        		</center>
+        		<br><br><br>
+				<?php
+					}
+				?>
+
+		</div> 
 	</form> 
 	<form id=form2  style="display: none;" action="generarcarga.php" method="POST">
 		<div id="global">
 				 <?php
-				    include 'cone.php'; 
           			$mysqi=conectar();
 
 					//encontrar a cliente por el id para tabla intermedia

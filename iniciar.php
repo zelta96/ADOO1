@@ -9,6 +9,7 @@ $conexion=mysqli_connect("localhost","root","","gestion");
 $resultado=mysqli_query($conexion,"SELECT * FROM empleados WHERE correo='$correo' and password='$password'");
 $res=mysqli_query($conexion,"SELECT * FROM empleados WHERE correo='$correo' and password='$password'");
 while($r=mysqli_fetch_array($res)){
+	$id=$r['id'];
 $usuario=$r['usuario'];
 $direccion=$r['direccion'];
 $telefono=$r['telefono'];
@@ -19,10 +20,15 @@ $edad=$r['edad'];
 $sexo=$r['sexo'];
 }
 
+
+
+
+
 $filas=mysqli_num_rows($resultado);
 
 if($filas>0){
 	session_start();
+	$_SESSION['id']=$id;
 	$_SESSION['usuario']=$usuario;
 	$_SESSION['direccion']=$direccion;
 	$_SESSION['telefono']=$telefono;
