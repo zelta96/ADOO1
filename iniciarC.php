@@ -11,6 +11,7 @@ $res=mysqli_query($conexion,"SELECT * FROM cliente WHERE RFC='$correo' and passw
 while($r=mysqli_fetch_array($res)){
 $usuario=$r['Nombre'];
 $direccion=$r['RFC'];
+$id=$r['id'];
 }
 
 $filas=mysqli_num_rows($resultado);
@@ -18,7 +19,8 @@ $filas=mysqli_num_rows($resultado);
 if($filas>0){
 	session_start();
 	$_SESSION['usuario']=$usuario;
-	$_SESSION['RFC']=$direccion;	
+	$_SESSION['RFC']=$direccion;
+	$_SESSION['id']=$id;	
 	header("location:interfazC.php");
 	
 }

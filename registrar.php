@@ -42,29 +42,17 @@ else{
 	exit;
 }
 
-if($tipoempleado=="1"){
-	$insertar2="INSERT INTO developers(usuario,proyecto) VALUES ('$usuario','no')";
-}
-else{
-	$insertar2="INSERT INTO pm(usuario) VALUES ('$usuario')";
-}
 
 
-$resultado2=mysqli_query($conexion,$insertar2);
-if(!$resultado2){
-	echo 'NO SE PUDO REGISTRAR';
-	header("location:registrofail.html");
-}
-else{
-	echo 'REGISTRO EXITOSO';
-	header("location:registrook.html");
-}
+
+
 //hacer la insercion de los datos
 $resultado=mysqli_query($conexion,$insertar);
 if(!$resultado){
 	echo 'NO SE PUDO REGISTRAR';
 }
 else{
+	header("location:index_proyecto.html");
 	echo 'REGISTRO EXITOSO';
 }
 

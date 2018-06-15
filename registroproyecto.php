@@ -28,6 +28,7 @@ else{
 //Registro del puro proyecto
 //$consulta="SELECT id FROM cliente where Nombre ='$vl'";
 $mysqi=conectar();
+//encontrar a cliente por el id para tabla intermedia
 $rec=$mysqi->query("SELECT * FROM cliente where RFC='$vl'");
 echo "$vl";
 if(!$rec){
@@ -38,7 +39,6 @@ else{
 	//header("location:interfazC.php");
 }
 while ($f=mysqli_fetch_array($rec)) {
-							$id=$f['id'];
 							$nombre=$f['Nombre'];
 						}
 
@@ -57,7 +57,7 @@ while ($f1=mysqli_fetch_array($rep)) {
 						}
 
 //$resultado1=mysqli_query($conexion,$consulta);
-
+$id=$_SESSION['id'];
 $insertar="INSERT INTO cliente_proyecto(id_proyecto,id_cliente) VALUES ('$idp','$id')";
 
 $resultado2=mysqli_query($conexion,$insertar);
