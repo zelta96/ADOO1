@@ -28,14 +28,13 @@ else{
 //Registro del puro proyecto
 //$consulta="SELECT id FROM cliente where Nombre ='$vl'";
 $mysqi=conectar();
-//encontrar a cliente por el id para tabla intermedia
 $rec=$mysqi->query("SELECT * FROM cliente where RFC='$vl'");
 echo "$vl";
 if(!$rec){
 	echo 'NO HAY REGISTROS';
 }
 else{
-	echo 'REGISTRO ENCONTRADO';
+	echo 'REGISTRO CLIENTE ENCONTRADO';
 	//header("location:interfazC.php");
 }
 while ($f=mysqli_fetch_array($rec)) {
