@@ -86,7 +86,6 @@ if($var_session==null||$var_session=''){
 		//encontrar a cliente por el id para tabla intermedia
 		$rec=$mysqi->query("SELECT * FROM cliente where RFC='$vl'");
 		while ($f=mysqli_fetch_array($rec)) {
-							$id=$f['id'];
 							$nombre=$f['Nombre'];
 						
 		?>
@@ -96,8 +95,9 @@ if($var_session==null||$var_session=''){
         </center>
       </div>
 		<?php
-		  }				
-          $ref=$mysqi->query("SELECT * FROM cliente_proyecto where id_cliente='$id'");
+		  }	
+		  $id=$_SESSION['id'];			
+           $ref=$mysqi->query("SELECT * FROM cliente_proyecto where id_cliente='$id'");
 			while ($f=mysqli_fetch_array($ref)) {
 							$id_cliente=$f['id_cliente'];
 							$id_proyecto=$f['id_proyecto'];
